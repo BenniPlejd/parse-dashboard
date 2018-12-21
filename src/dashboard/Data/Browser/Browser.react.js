@@ -278,8 +278,11 @@ export default class Browser extends DashboardView {
 
   handleFetchedSchema() {
     this.props.schema.data.get('classes').forEach((_, className) => {
-      this.context.currentApp.getClassCount(className)
-      .then(count => this.setState({ counts: { [className]: count, ...this.state.counts } }));
+      // this.context.currentApp.getClassCount(className)
+      // .then(count => this.setState({ counts: { [className]: count, ...this.state.counts } }));
+      
+      // Don't fetch count from Parse, since it currently takes way too long.
+      this.setState({ counts: { [className]: 0, ...this.state.counts } });
     })
     this.setState({clp: this.props.schema.data.get('CLPs').toJS()});
   }

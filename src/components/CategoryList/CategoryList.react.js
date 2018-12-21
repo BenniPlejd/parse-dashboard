@@ -60,9 +60,15 @@ export default class CategoryList extends React.Component {
           let link = this.context.generatePath(
             (this.props.linkPrefix || '') + (c.link || id)
           );
+
+          // Hide count, since it won't show the correct value.
+          const countStyle = {
+            visibility: 'hidden',
+          };
+
           return (
             <Link title={c.name} to={{ pathname: link }} className={className} key={id} >
-              <span>{count}</span>
+              <span style={countStyle}>{count}</span>
               <span>{c.name}</span>
             </Link>
           );
